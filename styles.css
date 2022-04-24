@@ -70,6 +70,25 @@ p {
   }
 }
 
+.fadeInMain {
+  animation-timing-function: ease-in-out;
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-duration: 1.3s;
+  animation-delay: 0.9s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .fadeOut {
   opacity: 1;
   animation-name: fadeOut;

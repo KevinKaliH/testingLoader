@@ -15,20 +15,26 @@ class AnimatorLoader {
 
   assignEventListener() {
     for (let index = 0; index < this.itemList.length; index++) {
-      this.itemList[index].addEventListener("animationend", () => {
+      this.itemList[index].addEventListener("animationend", (event) => {
         if (this.itemList[index + 1])
           this.itemList[index + 1].classList.add("fadeIn");
         else {
           this.imgContainer.classList.add("fadeOut");
+          this.imgMain.classList.add("fadeInMain");
         }
+
+        event.stopPropagation();
       });
       if (!this.itemList[index + 1]) break;
     }
 
-    this.imgContainer.addEventListener("animationend", (event) => {
-      if (event.animationName === "fadeOut")
-        this.imgMain.classList.add("fadeIn");
-    });
+    // this.imgContainer.addEventListener("animationend", (event) => {
+    //   console.log("dawdasdas");
+    //   if (event.animationName === "fadeOut")
+    //     this.imgMain.classList.add("fadeInMain");
+
+    //   // this.imgMain.classList.add("fadeInMain");
+    // });
 
     this.imgMain.addEventListener("animationend", (event) => {
       if (event.animationName === "fadeIn") {
@@ -40,7 +46,7 @@ class AnimatorLoader {
       }
 
       if (event.animationName === "fadeOut") {
-        this.imgMain.classList.remove("fadeIn");
+        this.imgMain.classList.remove("fadeInMain");
         this.imgMain.classList.remove("fadeOut");
         this.imgContainer.classList.remove("fadeOut");
         this.itemList[0].classList.add("fadeIn");
